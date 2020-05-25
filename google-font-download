@@ -419,8 +419,7 @@ for family in "${families[@]}"; do
 	ret=0
 	local_name=$(echo "$css_src_string" | grep -Eo "src: local\\('[^']+'\\)," | $ESED "s/^src: local\\('([^']+)'\\),$/\\1/g") || ret=$?
 	if [ $ret -ne 0 ]; then
-		errors=1
-		printf >&2 "Failed to determine local font name\\n"
+		local_name="$family"
 	fi
 	local_postscript_name=$(echo "$css_src_string" | grep -Eo ", local\\('[^']+'\\)," | $ESED "s/^, local\\('([^']+)'\\),$/\\1/g") || true
 
